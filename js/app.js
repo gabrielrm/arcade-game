@@ -111,6 +111,9 @@ Player.prototype.goBack = function() {
 
 Player.prototype.end = function() {
     alert("Game Over!");
+    this.goBack;
+    life = 3;
+    swim = 0;
 }
 
 // Now instantiate your objects.
