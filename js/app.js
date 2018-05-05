@@ -8,7 +8,8 @@ const   bugs        = [
         pStartY     = 387;
 
 let     swim        = 0,
-        life        = 3;
+        life        = 3,
+        renderStop  = false;
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
@@ -115,10 +116,11 @@ Player.prototype.goBack = function() {
 };
 
 Player.prototype.end = function() {
-    alert("Game Over!");
-    this.goBack;
-    life = 3;
-    swim = 0;
+    // alert("Game Over!");
+    // this.goBack;
+    // life = 3;
+    // swim = 0;
+    overlay();
 }
 
 Player.prototype.moreLife = function() {
@@ -131,6 +133,10 @@ Player.prototype.display = function() {
     ctx.fillStyle="#8a0925";
     ctx.fillText("Lives: " + life, 118, 573);
     ctx.fillText("Swim: " + swim, 318, 573);
+}
+
+function overlay() {
+    renderStop = true;
 }
 
 // Now instantiate your objects.
