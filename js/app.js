@@ -145,6 +145,15 @@ function overlay() {
     end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
 }
 
+// reload modal button
+function reload() {
+    location = location;
+    this.goBack();
+    life = 3;
+    swim = 0;
+    keyOn = true;
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
