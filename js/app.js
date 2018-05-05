@@ -7,6 +7,8 @@ const   bugs        = [
         pStartX     = 202,
         pStartY     = 387;
 
+let     swim        = 0;
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -64,8 +66,12 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
     switch(key) {
         case "up":
-            if (this.y > 130)
-            this.y -= 83;
+            if (this.y > 130) {
+                this.y -= 83;
+            } else {
+                this.goBack();
+                swim += 1;
+            }
             break;
 
         case "down":
@@ -85,6 +91,10 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
+Player.prototype.goBack = function() {
+    this.x = pStartX;
+    this.y = pStartY;
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
