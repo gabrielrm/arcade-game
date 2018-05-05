@@ -1,3 +1,10 @@
+const   bugs        = [
+            "images/bug_blue.png",
+            "images/bug_red.png",
+            "images/bug_green.png"],
+        enemyRow    = [55, 138, 221],
+        allEnemies  = [];
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -8,7 +15,8 @@ var Enemy = function(x, y) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    // random bugs
+    this.sprite = bugs[Math.floor(Math.random() * bugs.length)];
 };
 
 // Update the enemy's position, required method for game
@@ -33,11 +41,12 @@ Enemy.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemy1 = new Enemy(0, 55),
-    enemy2 = new Enemy(0, 138),
-    enemy3 = new Enemy(0, 221);
 
-const allEnemies = [enemy1, enemy2, enemy3];
+// random rows for bugs
+enemyRow.forEach(function(y) {
+    enemies = new Enemy(0, y);
+    allEnemies.push(enemies);
+});
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
