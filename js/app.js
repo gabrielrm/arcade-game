@@ -1,23 +1,22 @@
-const   bugs        = [
+const   allEnemies  = [],
+        enemyRow    = [55, 138, 221],
+        bugs        = [
             "images/bug_blue.png",
             "images/bug_red.png",
             "images/bug_green.png"],
-        enemyRow    = [55, 138, 221],
-        allEnemies  = [],
-        pStartX     = 202,
-        pStartY     = 387,
-        end         = document.querySelector(".overlay"),
         playerChar  = [
             "images/char-boy.png",
             "images/char-cat-girl.png",
             "images/char-horn-girl.png",
             "images/char-pink-girl.png",
-            "images/char-princess-girl.png"];
+            "images/char-princess-girl.png"],
+        end         = document.querySelector(".overlay");
 
 let     swim        = 0,
         life        = 3,
         renderStop  = false,
         keyOn       = false;
+
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
@@ -33,6 +32,7 @@ var Enemy = function(x, y) {
     this.sprite = bugs[Math.floor(Math.random() * bugs.length)];
 };
 
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -41,8 +41,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     // player collison
-    if (Math.trunc(this.x) >= player.x - pStartX / 3 &&
-        Math.trunc(this.x) <= player.x + pStartX / 3 &&
+    if (Math.trunc(this.x) >= player.x - 202 / 3 &&
+        Math.trunc(this.x) <= player.x + 202 / 3 &&
         this.y === player.y) {
             player.goBack();
             life -= 1;
@@ -57,10 +57,12 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 };
 
+
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -71,6 +73,7 @@ const Player = function(x, y) {
     this.sprite = playerChar[Math.floor(Math.random() * playerChar.length)];
 };
 
+
 Player.prototype.update = function() {
     x = this.x;
     y = this.y;
@@ -80,10 +83,12 @@ Player.prototype.update = function() {
     }
 }
 
+
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.display();
 }
+
 
 // player input while keeping on canvas
 Player.prototype.handleInput = function(key) {
@@ -102,12 +107,12 @@ Player.prototype.handleInput = function(key) {
             break;
 
         case "down":
-            if (this.y < pStartY)
+            if (this.y < 387)
             this.y += 83;
             break;
 
         case "right":
-            if (this.x < pStartX * 2)
+            if (this.x < 202 * 2)
             this.x += 101;
             break;
 
@@ -118,24 +123,24 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
+
 Player.prototype.goBack = function() {
-    this.x = pStartX;
-    this.y = pStartY;
+    this.x = 202;
+    this.y = 387;
 };
 
+
 Player.prototype.end = function() {
-    // alert("Game Over!");
-    // this.goBack;
-    // life = 3;
-    // swim = 0;
     keyOn = false;
     this.overlay();
 }
+
 
 Player.prototype.moreLife = function() {
     life += 1;
     swim = 0;
 };
+
 
 Player.prototype.display = function() {
     ctx.font="bold 20px Roboto Condensed";
@@ -144,15 +149,17 @@ Player.prototype.display = function() {
     ctx.fillText("Swim: " + swim, 318, 573);
 }
 
+
 Player.prototype.overlay = function() {
     renderStop = true;
-    keyOn = false;
     // modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
     end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
 }
 
+
 // reload modal button
 Player.prototype.reload = function() {
+    // reload page
     location = location;
     this.goBack();
     life = 3;
@@ -162,7 +169,6 @@ Player.prototype.reload = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 
 // random rows for bugs
 enemyRow.forEach(function(y) {
@@ -171,7 +177,7 @@ enemyRow.forEach(function(y) {
 });
 
 // Place the player object in a variable called player
-const player = new Player(pStartX, pStartY);
+const player = new Player(202, 387);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -182,7 +188,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
+    // block on end game
     if (keyOn) {
         player.handleInput(allowedKeys[e.keyCode]);
     }
