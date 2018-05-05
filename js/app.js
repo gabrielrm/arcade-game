@@ -65,6 +65,10 @@ const Player = function(x, y) {
 Player.prototype.update = function() {
     x = this.x;
     y = this.y;
+
+    if (life === 5 || life === 0) {
+        this.end();
+    }
 }
 
 Player.prototype.render = function() {
@@ -104,6 +108,10 @@ Player.prototype.goBack = function() {
     this.x = pStartX;
     this.y = pStartY;
 };
+
+Player.prototype.end = function() {
+    alert("Game Over!");
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
