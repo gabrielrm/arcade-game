@@ -3,13 +3,15 @@ const   allEnemies  = [],
         bugs        = [
             "images/bug_blue.png",
             "images/bug_red.png",
-            "images/bug_green.png"],
+            "images/bug_green.png"
+        ],
         playerChar  = [
             "images/char-boy.png",
             "images/char-cat-girl.png",
             "images/char-horn-girl.png",
             "images/char-pink-girl.png",
-            "images/char-princess-girl.png"],
+            "images/char-princess-girl.png"
+        ],
         end         = document.querySelector(".overlay");
 
 let     swim        = 0,
@@ -124,24 +126,28 @@ Player.prototype.handleInput = function(key) {
 };
 
 
+// start position
 Player.prototype.goBack = function() {
     this.x = 202;
     this.y = 387;
 };
 
 
+// end game
 Player.prototype.end = function() {
     keyOn = false;
     this.overlay();
 }
 
 
+// add life
 Player.prototype.moreLife = function() {
     life += 1;
     swim = 0;
 };
 
 
+// display lives and swim
 Player.prototype.display = function() {
     ctx.font="bold 20px Roboto Condensed";
     ctx.fillStyle="#8a0925";
@@ -150,6 +156,7 @@ Player.prototype.display = function() {
 }
 
 
+// modal overlay
 Player.prototype.overlay = function() {
     renderStop = true;
     // modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
