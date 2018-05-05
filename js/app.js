@@ -7,7 +7,8 @@ const   bugs        = [
         pStartX     = 202,
         pStartY     = 387;
 
-let     swim        = 0;
+let     swim        = 0,
+        life        = 3;
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
@@ -29,6 +30,14 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    // player collison
+    if (Math.trunc(this.x) >= player.x - pStartX / 3 &&
+        Math.trunc(this.x) <= player.x + pStartX / 3 &&
+        this.y === player.y) {
+            player.goBack();
+            life -= 1;
+    }
 
     // bugs reach end canvas
     if (this.x >= 505) {
