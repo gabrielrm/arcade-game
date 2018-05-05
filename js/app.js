@@ -5,7 +5,8 @@ const   bugs        = [
         enemyRow    = [55, 138, 221],
         allEnemies  = [],
         pStartX     = 202,
-        pStartY     = 387;
+        pStartY     = 387,
+        end         = document.querySelector(".overlay");
 
 let     swim        = 0,
         life        = 3,
@@ -140,6 +141,8 @@ Player.prototype.display = function() {
 function overlay() {
     renderStop = true;
     keyOn = false;
+    // modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
+    end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
 }
 
 // Now instantiate your objects.
