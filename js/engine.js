@@ -78,7 +78,7 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        // updateEntities(dt);
+        updateEntities(dt);
         // checkCollisions();
     }
 
@@ -93,7 +93,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update();
+        // player.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -138,7 +138,7 @@ var Engine = (function(global) {
             }
         }
 
-        // renderEntities();
+        renderEntities();
     }
 
     /* This function is called by the render function and is called on each game
@@ -153,7 +153,7 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        player.render();
+        // player.render();
     }
 
     /* This function does nothing but it could have been a good place to
