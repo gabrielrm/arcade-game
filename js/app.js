@@ -73,6 +73,7 @@ Player.prototype.update = function() {
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    this.display();
 }
 
 // player input while keeping on canvas
@@ -84,6 +85,10 @@ Player.prototype.handleInput = function(key) {
             } else {
                 this.goBack();
                 swim += 1;
+            }
+            if (swim === 3) {
+                this.goBack();
+                this.moreLife();
             }
             break;
 
@@ -114,6 +119,18 @@ Player.prototype.end = function() {
     this.goBack;
     life = 3;
     swim = 0;
+}
+
+Player.prototype.moreLife = function() {
+    life += 1;
+    swim = 0;
+};
+
+Player.prototype.display = function() {
+    ctx.font="bold 20px Roboto Condensed";
+    ctx.fillStyle="#8a0925";
+    ctx.fillText("Lives: " + life, 118, 573);
+    ctx.fillText("Swim: " + swim, 318, 573);
 }
 
 // Now instantiate your objects.
