@@ -129,7 +129,7 @@ Player.prototype.end = function() {
     // life = 3;
     // swim = 0;
     keyOn = false;
-    overlay();
+    this.overlay();
 }
 
 Player.prototype.moreLife = function() {
@@ -144,7 +144,7 @@ Player.prototype.display = function() {
     ctx.fillText("Swim: " + swim, 318, 573);
 }
 
-function overlay() {
+Player.prototype.overlay = function() {
     renderStop = true;
     keyOn = false;
     // modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
@@ -152,7 +152,7 @@ function overlay() {
 }
 
 // reload modal button
-function reload() {
+Player.prototype.reload = function() {
     location = location;
     this.goBack();
     life = 3;
