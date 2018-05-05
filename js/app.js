@@ -6,7 +6,13 @@ const   bugs        = [
         allEnemies  = [],
         pStartX     = 202,
         pStartY     = 387,
-        end         = document.querySelector(".overlay");
+        end         = document.querySelector(".overlay"),
+        playerChar  = [
+            "images/char-boy.png",
+            "images/char-cat-girl.png",
+            "images/char-horn-girl.png",
+            "images/char-pink-girl.png",
+            "images/char-princess-girl.png"];
 
 let     swim        = 0,
         life        = 3,
@@ -62,7 +68,7 @@ Enemy.prototype.render = function() {
 const Player = function(x, y) {
     this.x      = x;
     this.y      = y;
-    this.sprite = "images/char-boy.png";
+    this.sprite = playerChar[Math.floor(Math.random() * playerChar.length)];
 };
 
 Player.prototype.update = function() {
