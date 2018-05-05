@@ -3,7 +3,9 @@ const   bugs        = [
             "images/bug_red.png",
             "images/bug_green.png"],
         enemyRow    = [55, 138, 221],
-        allEnemies  = [];
+        allEnemies  = [],
+        pStartX     = 202,
+        pStartY     = 387;
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
@@ -25,6 +27,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    // bugs reach end canvas
+    if (this.x >= 505) {
+        this.x = -101;
+        this.speed = Math.floor(Math.random() * 250) + 100;
+    }
+
     this.x += this.speed * dt;
 };
 
@@ -36,7 +45,20 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+const Player = function(x, y) {
+    this.x      = x;
+    this.y      = y;
+    this.sprite = "images/char-boy.png";
+};
 
+Player.prototype.update = function() {
+    x = this.x;
+    y = this.y;
+}
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -47,6 +69,9 @@ enemyRow.forEach(function(y) {
     enemies = new Enemy(0, y);
     allEnemies.push(enemies);
 });
+
+// Place the player object in a variable called player
+const player = new Player(pStartX, pStartY);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
