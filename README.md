@@ -7,7 +7,7 @@ The graphics and game engine were provided by Udacity starter code https://githu
 
 ## How to run
 
-1. Arcade Game direct link
+1. Arcade Game direct [link](https://gabrielrm.github.io/arcade-game/)
 
 2. Clone on your computer and open the index.html file in your favorite browser to play.
 
