@@ -9,7 +9,8 @@ const   bugs        = [
 
 let     swim        = 0,
         life        = 3,
-        renderStop  = false;
+        renderStop  = false,
+        keyOn       = false;
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
@@ -120,6 +121,7 @@ Player.prototype.end = function() {
     // this.goBack;
     // life = 3;
     // swim = 0;
+    keyOn = false;
     overlay();
 }
 
@@ -137,6 +139,7 @@ Player.prototype.display = function() {
 
 function overlay() {
     renderStop = true;
+    keyOn = false;
 }
 
 // Now instantiate your objects.
@@ -162,5 +165,7 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+    if (keyOn) {
+        player.handleInput(allowedKeys[e.keyCode]);
+    }
 });
